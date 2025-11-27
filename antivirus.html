@@ -249,12 +249,22 @@
             }
 
             nav ul {
-                flex-direction: column;
+                flex-wrap: nowrap;
+                justify-content: space-between;
                 width: 100%;
+                gap: 0;
             }
 
             nav ul li {
-                margin: 5px 0;
+                flex: 0 0 25%;
+                display: flex;
+                justify-content: center;
+            }
+
+            nav ul li a {
+                font-size: 0.7rem;
+                padding: 0.3rem 0.2rem;
+                white-space: nowrap;
             }
         }
     </style>
