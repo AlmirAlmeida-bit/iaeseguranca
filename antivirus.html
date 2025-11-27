@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🛡️ Análise Executiva de Antivírus Corporativos</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-primary: #003366; /* Azul Marinho (Escuro) */
+            --color-accent: #00bcd4;  /* Ciano (Destaque) */
+            --color-text: #333333;
+            --color-background: #f4f7f6;
+            --color-light: #ffffff;
+            --color-success: #28a745;
+            --color-danger: #dc3545;
+            --color-border: #dee2e6;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--color-background);
+            color: var(--color-text);
+        }
+
+        header {
+            background-color: var(--color-primary);
+            color: var(--color-light);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            padding: 0;
+            margin: 0;
+            gap: 10px;
+        }
+
+        nav ul li a {
+            color: var(--color-light);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            transition: background-color 0.3s;
+            border-radius: 4px;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        main {
+            padding: 20px 5%;
+        }
+
+        section[id] {
+            scroll-margin-top: 100px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: var(--color-light);
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .hero h1 {
+            margin: 0 0 0.5rem 0;
+            font-size: 2.2rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin: 0.5rem 0 1rem 0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--color-success);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #1e7e34;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h2.section-title {
+            color: var(--color-accent);
+            text-align: center;
+            margin: 2rem 0 1.5rem 0;
+            font-size: 2rem;
+        }
+
+        .tabela-executiva-container {
+            background: var(--color-light);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+            overflow-x: auto;
+        }
+
+        .tabela-executiva {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .tabela-executiva th,
+        .tabela-executiva td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .tabela-executiva th {
+            background-color: #e9ecef;
+            color: var(--color-text);
+            font-weight: bold;
+        }
+
+        .tabela-executiva tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .comparativo-detalhado {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card {
+            background-color: var(--color-light);
+            border-radius: 8px;
+            padding: 25px;
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--color-accent);
+        }
+
+        .card h3 {
+            color: var(--color-primary);
+            border-bottom: 2px solid var(--color-primary);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .pros-list li {
+            color: var(--color-success);
+            list-style: none;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .contras-list li {
+            color: var(--color-danger);
+            list-style: none;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .list-title {
+            font-weight: bold;
+            color: var(--color-text);
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+
+        .list-icon {
+            margin-right: 8px;
+        }
+
+        .vereditos {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .vereditos p {
+            background-color: var(--color-light);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 380px;
+        }
+
+        .vereditos strong {
+            color: var(--color-primary);
+            font-size: 1.1em;
+        }
+
+        footer {
+            background-color: #cccccc;
+            color: var(--color-text);
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+
+        footer a {
+            color: #555555;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            nav ul li {
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Análise de Antivírus Corporativos</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Portal IA</a></li>
+                <li><a href="#overview">Resumo</a></li>
+                <li><a href="#detalhes">Prós & Contras</a></li>
+                <li><a href="#vereditofinal">Veredito</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="topo">
+            <h1>🛡️ Qual é o Melhor Antivírus Corporativo?</h1>
+            <p>Análise Executiva: Bitdefender vs. Kaspersky vs. McAfee para Segurança de Endpoint.</p>
+            <a href="#vereditofinal" class="cta-button">Ir direto ao Veredito</a>
+        </section>
+
+        <section id="overview">
+            <h2 class="section-title">Resumo Executivo: Os Três Gigantes da Segurança</h2>
+            <p style="text-align: center;">Uma visão rápida sobre o foco, o custo e a melhor aplicação de cada solução para auxiliar na sua decisão estratégica.</p>
+
+            <div class="tabela-executiva-container">
+                <table class="tabela-executiva">
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Foco Principal</th>
+                            <th>Melhor para</th>
+                            <th>Custo (Comparativo)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Bitdefender GravityZone</strong></td>
+                            <td>Performance, Integração e Custo-Benefício</td>
+                            <td>PMEs e Corporações que priorizam leveza e preço.</td>
+                            <td>Mais Acessível (Referência 1)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kaspersky Endpoint Security</strong></td>
+                            <td>Facilidade de Uso e Resposta a Incidentes</td>
+                            <td>PMEs com equipe de TI limitada e que buscam automação.</td>
+                            <td>Intermediário/Alto</td>
+                        </tr>
+                        <tr>
+                            <td><strong>McAfee Business Protection</strong></td>
+                            <td>Suíte Completa e Abrangente</td>
+                            <td>Empresas que buscam uma solução tudo-em-um e escalável.</td>
+                            <td>Intermediário/Alto</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="detalhes">
+            <h2 class="section-title">O Confronto de Recursos: Prós e Contras</h2>
+
+            <div class="comparativo-detalhado">
+                <div class="card">
+                    <h3>Bitdefender GravityZone</h3>
+                    <p>Custo: Geralmente o mais competitivo.</p>
+
+                    <p class="list-title">✅ Prós:</p>
+                    <ul class="pros-list">
+                        <li><span class="list-icon">🟢</span> <strong>Mais Leve</strong> (melhor performance no sistema).</li>
+                        <li><span class="list-icon">🟢</span> Ótimo Custo-Benefício.</li>
+                        <li><span class="list-icon">🟢</span> Excelentes APIs para integração avançada.</li>
+                    </ul>
+
+                    <p class="list-title">❌ Contras:</p>
+                    <ul class="contras-list">
+                        <li><span class="list-icon">🔴</span> Rollback de ameaças pode exigir intervenção manual.</li>
+                        <li><span class="list-icon">🔴</span> Suporte técnico menos consistente (segundo relatos).</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Kaspersky Endpoint Security</h3>
+                    <p>Custo: Preço sólido, mas tende a ser superior ao BD.</p>
+
+                    <p class="list-title">✅ Prós:</p>
+                    <ul class="pros-list">
+                        <li><span class="list-icon">🟢</span> Console <strong>Extremamente Intuitivo</strong> (fácil gestão).</li>
+                        <li><span class="list-icon">🟢</span> <strong>Rollback Automático</strong> de atividades maliciosas.</li>
+                        <li><span class="list-icon">🟢</span> Suporte Técnico de alta qualidade.</li>
+                    </ul>
+
+                    <p class="list-title">❌ Contras:</p>
+                    <ul class="contras-list">
+                        <li><span class="list-icon">🔴</span> Potencialmente mais "pesado" em recursos do sistema.</li>
+                        <li><span class="list-icon">🔴</span> Integrações avançadas limitadas.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>McAfee Business Protection</h3>
+                    <p>Custo: Preço Justo pela amplitude de recursos oferecidos.</p>
+
+                    <p class="list-title">✅ Prós:</p>
+                    <ul class="pros-list">
+                        <li><span class="list-icon">🟢</span> Suíte de Segurança <strong>Mais Completa</strong> (muitos módulos).</li>
+                        <li><span class="list-icon">🟢</span> Versátil e escalável para grandes empresas.</li>
+                        <li><span class="list-icon">🟢</span> Proteção robusta em tempo real.</li>
+                    </ul>
+
+                    <p class="list-title">❌ Contras:</p>
+                    <ul class="contras-list">
+                        <li><span class="list-icon">🔴</span> Pode exigir maior curva de aprendizado para uso total.</li>
+                        <li><span class="list-icon">🔴</span> Consumo de recursos moderado.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="vereditofinal">
+            <h2 class="section-title">Decisão Executiva: Escolha o Seu Vencedor</h2>
+            <div class="vereditos">
+                <p>Se você busca o melhor <strong>Preço/Performance</strong> e precisa de um antivírus mais leve e integrável:<br><strong>Escolha Bitdefender.</strong></p>
+                <p>Se você busca a melhor <strong>Automação de Defesa</strong> contra ransomware e facilidade de uso:<br><strong>Escolha Kaspersky.</strong></p>
+            </div>
+            <p style="text-align: center; margin-top: 30px;">
+                <a href="#topo" class="cta-button">Voltar ao topo</a>
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Criado no Laboratório de Tecnologia da Dream Factory - Todos os direitos reservados</p>
+    </footer>
+</body>
+</html>
+
+
