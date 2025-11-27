@@ -341,12 +341,22 @@
             }
 
             nav ul {
-                flex-direction: column;
+                flex-wrap: wrap;
+                justify-content: center;
                 width: 100%;
+                gap: 4px;
             }
 
             nav ul li {
-                margin: 5px 0;
+                flex: 0 0 23%;
+                display: flex;
+                justify-content: center;
+            }
+
+            nav ul li a {
+                font-size: 0.75rem;
+                padding: 0.35rem 0.25rem;
+                white-space: nowrap;
             }
             
             .metrics {
