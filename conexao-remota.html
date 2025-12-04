@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise Executiva: Melhores Aplicações de Conexão Remota</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-primary: #003366; /* Azul Marinho (Escuro) */
+            --color-accent: #00bcd4;  /* Ciano (Destaque) */
+            --color-text: #333333;
+            --color-background: #f4f7f6;
+            --color-light: #ffffff;
+            --color-success: #28a745;
+            --color-danger: #dc3545;
+            --color-border: #dee2e6;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--color-background);
+            color: var(--color-text);
+        }
+
+        header {
+            background-color: var(--color-primary);
+            color: var(--color-light);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            padding: 0;
+            margin: 0;
+            gap: 10px;
+        }
+
+        nav ul li a {
+            color: var(--color-light);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            transition: background-color 0.3s;
+            border-radius: 4px;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: #000000;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+            display: block;
+            box-sizing: border-box;
+            flex-shrink: 0;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        .menu-overlay {
+            display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            min-height: 100vh;
+            height: 100vh;
+            max-height: 100vh;
+            background: linear-gradient(135deg, #001a33 0%, #003366 100%);
+            z-index: 1000;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transform: translateY(-100%);
+            transition: transform 0.4s ease;
+            overflow-y: auto;
+        }
+
+        .menu-overlay.active {
+            transform: translateY(0);
+        }
+
+        .menu-overlay ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .menu-overlay ul li {
+            width: 100%;
+            text-align: center;
+        }
+
+        .menu-overlay ul li a {
+            display: block;
+            color: var(--color-accent);
+            text-decoration: none;
+            padding: 25px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            border-bottom: 2px solid rgba(0, 188, 212, 0.3);
+            transition: all 0.3s;
+            text-shadow: 0 0 10px rgba(0, 188, 212, 0.5);
+            letter-spacing: 1px;
+        }
+
+        .menu-overlay ul li a:hover {
+            background-color: rgba(0, 188, 212, 0.15);
+            color: #00e5ff;
+            text-shadow: 0 0 20px rgba(0, 188, 212, 0.8);
+            transform: translateX(10px);
+            border-left: 4px solid var(--color-accent);
+        }
+
+        main {
+            padding: 20px 5%;
+        }
+
+        section[id] {
+            scroll-margin-top: 100px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: var(--color-light);
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .hero h1 {
+            margin: 0 0 0.5rem 0;
+            font-size: 2.2rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin: 0.5rem 0 1rem 0;
+        }
+
+        h2.section-title {
+            color: var(--color-accent);
+            text-align: center;
+            margin: 2rem 0 1.5rem 0;
+            font-size: 2rem;
+        }
+
+        .tabela-executiva-container {
+            background: var(--color-light);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+            overflow-x: auto;
+        }
+
+        .tabela-executiva {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .tabela-executiva th,
+        .tabela-executiva td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .tabela-executiva th {
+            background-color: #e9ecef;
+            color: var(--color-text);
+            font-weight: bold;
+        }
+
+        .tabela-executiva tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .tabela-executiva tr.destaque {
+            background-color: #e6f7ff;
+            font-weight: bold;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .card {
+            background-color: var(--color-light);
+            border-radius: 8px;
+            padding: 25px;
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--color-accent);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: var(--color-primary);
+            border-bottom: 2px solid var(--color-primary);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .vereditos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .vereditos p {
+            background-color: var(--color-light);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 380px;
+        }
+
+        .vereditos strong {
+            color: var(--color-primary);
+            font-size: 1.1em;
+        }
+
+        .vereditos .cta-button {
+            max-width: 250px;
+            width: auto;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--color-success);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .cta-button.voltar-topo {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            margin: 0;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .cta-button.voltar-topo.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .cta-button:hover {
+            background-color: #1e7e34;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            background-color: #cccccc;
+            color: var(--color-text);
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+
+        footer a {
+            color: #555555;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav {
+                display: none;
+            }
+
+
+            .tabela-executiva-container {
+                padding: 0.5rem;
+                overflow-x: visible;
+            }
+
+            .tabela-executiva thead {
+                display: none;
+            }
+
+            .tabela-executiva, .tabela-executiva tbody, .tabela-executiva tr {
+                display: block;
+                width: 100%;
+            }
+
+            .tabela-executiva tbody {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .tabela-executiva tr {
+                margin-bottom: 0;
+                border: 2px solid var(--color-accent);
+                border-radius: 8px;
+                display: flex;
+                flex-direction: column;
+                background-color: var(--color-light);
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+            }
+
+            .tabela-executiva tr.destaque {
+                border-color: var(--color-success);
+                border-width: 3px;
+            }
+
+            .tabela-executiva td {
+                display: flex;
+                flex-direction: column;
+                padding: 15px;
+                text-align: left;
+                position: relative;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            }
+
+            .tabela-executiva td:last-child {
+                border-bottom: none;
+            }
+
+            .tabela-executiva td::before {
+                content: attr(data-label);
+                font-weight: 700;
+                color: var(--color-primary);
+                font-size: 0.9rem;
+                margin-bottom: 8px;
+                padding-bottom: 5px;
+                border-bottom: 2px solid var(--color-accent);
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            .tabela-executiva td strong {
+                font-size: 0.95rem;
+                line-height: 1.6;
+                word-wrap: break-word;
+                display: block;
+                color: var(--color-text);
+            }
+
+            .tabela-executiva-container {
+                margin: 0;
+                padding: 0.5rem;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero p {
+                font-size: 0.9rem;
+            }
+
+            h2.section-title {
+                font-size: 1.5rem;
+            }
+
+            main {
+                padding: 15px 3%;
+            }
+
+            .tabela-executiva-container {
+                padding: 1rem;
+            }
+
+            .card {
+                min-width: 100%;
+                max-width: 100%;
+            }
+
+            .vereditos p {
+                max-width: 100%;
+                padding: 15px;
+            }
+
+            .cta-button.voltar-topo {
+                bottom: 80px;
+                left: 50%;
+                transform: translateX(-50%);
+                right: auto;
+                padding: 8px 16px;
+                font-size: 0.75rem;
+                border-radius: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Análise de Conexão Remota</div>
+        <button class="menu-toggle" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav>
+            <ul>
+                <li><a href="index.html">Portal IA</a></li>
+                <li><a href="#comparativo">Comparativo</a></li>
+                <li><a href="#conclusao">Conclusão</a></li>
+                <li><a href="#vereditofinal">Veredito</a></li>
+            </ul>
+        </nav>
+        <div class="menu-overlay">
+            <ul>
+                <li><a href="index.html">Portal IA</a></li>
+                <li><a href="#comparativo">Comparativo</a></li>
+                <li><a href="#conclusao">Conclusão</a></li>
+                <li><a href="#vereditofinal">Veredito</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="topo">
+            <h1>Análise Executiva: Melhores Aplicações de Conexão Remota</h1>
+            <p>Comparativo das 3 principais ferramentas de acesso remoto: Anyconect, TeamViewer e AnyDesk.</p>
+        </section>
+
+        <section id="comparativo">
+            <h2 class="section-title">📈 Tabela Comparativa de Ferramentas</h2>
+
+            <div class="tabela-executiva-container">
+                <table class="tabela-executiva">
+                    <thead>
+                        <tr>
+                            <th>Aplicação</th>
+                            <th>Preço</th>
+                            <th>Usabilidade</th>
+                            <th>Recursos (Features)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="destaque">
+                            <td data-label="Aplicação"><strong>AnyDesk</strong></td>
+                            <td data-label="Preço"><strong>Intermediário/Acessível</strong></td>
+                            <td data-label="Usabilidade"><strong>Extremamente rápido e leve, Baixa Latência.</strong></td>
+                            <td data-label="Recursos (Features)"><strong>Alta segurança, Compatibilidade multiplataforma, Transferência de arquivos rápida.</strong></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Aplicação"><strong>TeamViewer</strong></td>
+                            <td data-label="Preço"><strong>Possui um preço mais elevado</strong></td>
+                            <td data-label="Usabilidade"><strong>Fácil de usar, Interface bem estabelecida.</strong></td>
+                            <td data-label="Recursos (Features)"><strong>Conjunto de recursos mais completo, Suporte Móvel, Impressão Remota.</strong></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Aplicação"><strong>Anyconect</strong></td>
+                            <td data-label="Preço"><strong>Custo intermediario</strong></td>
+                            <td data-label="Usabilidade"><strong>Alta segurança, Controle total da empresa sobre o ambiente</strong></td>
+                            <td data-label="Recursos (Features)"><strong>Bom para uso interno e acesso a servidores</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="conclusao">
+            <h2 class="section-title">🎯 Conclusão Executiva</h2>
+
+            <div class="card-container">
+                <div class="card">
+                    <h3>AnyDesk</h3>
+                    <p>✅ <strong>Maior Velocidade:</strong> Ótimo para usuários que precisam de conexões rápidas e estáveis em um ambiente leve.</p>
+                </div>
+
+                <div class="card">
+                    <h3>TeamViewer</h3>
+                    <p>✅ <strong>Mais Serviços </strong> Líder para suporte de TI, devido ao seu vasto conjunto de recursos e compatibilidade.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Anyconect</h3>
+                    <p>✅ <strong>Controle total da empresa sobre o ambiente:</strong> Alta segurança.Bom para uso interno e acesso a servidores</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="vereditofinal">
+            <h2 class="section-title">Melhor Avaliado:</h2>
+            <div class="vereditos">
+                <p>Se você busca <strong>Maior Velocidade</strong> e conexões rápidas e estáveis em um ambiente leve:<br><strong>Escolha AnyDesk.</strong></p>
+            </div>
+            <p style="text-align: center; margin-top: 20px;">
+                <a href="https://dreamfactorybr-my.sharepoint.com/:x:/g/personal/backoffice_dreamfactory_com_br/IQCj3tCwz2QNR5dBRm6NxcHZAfKvIwVeCiqhDtR6fOrEgzI?e=AyNbYW" target="_blank" rel="noopener noreferrer" class="cta-button">Valores</a>
+            </p>
+            <a href="#topo" class="cta-button voltar-topo">Voltar ao topo</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Criado no Laboratório de Tecnologia da Dream Factory - Todos os direitos reservados</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Menu Hambúrguer
+            const menuToggle = document.querySelector('.menu-toggle');
+            const menuOverlay = document.querySelector('.menu-overlay');
+            const menuLinks = menuOverlay ? menuOverlay.querySelectorAll('a') : [];
+
+            if (menuToggle && menuOverlay) {
+                menuToggle.addEventListener('click', () => {
+                    menuToggle.classList.toggle('active');
+                    menuOverlay.classList.toggle('active');
+                    document.body.style.overflow = menuOverlay.classList.contains('active') ? 'hidden' : '';
+                });
+
+                // Fechar menu ao clicar em um link
+                menuLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        menuToggle.classList.remove('active');
+                        menuOverlay.classList.remove('active');
+                        document.body.style.overflow = '';
+                    });
+                });
+
+                // Fechar menu ao clicar fora (no overlay)
+                menuOverlay.addEventListener('click', (e) => {
+                    if (e.target === menuOverlay) {
+                        menuToggle.classList.remove('active');
+                        menuOverlay.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+
+            // Script para melhorar a visualização da tabela em mobile (Labeling)
+            const table = document.querySelector('.tabela-executiva');
+            if (table) {
+                const headers = Array.from(table.querySelectorAll('th')).map(th => th.textContent);
+                const rows = table.querySelectorAll('tbody tr');
+
+                rows.forEach(row => {
+                    const cells = row.querySelectorAll('td');
+                    cells.forEach((cell, index) => {
+                        if (!cell.getAttribute('data-label')) {
+                            cell.setAttribute('data-label', headers[index]);
+                        }
+                    });
+                });
+            }
+
+            // Efeito deslizante suave com ajuste para header sticky
+            document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        const headerOffset = 100;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Controle do botão "Voltar ao topo"
+            const voltarTopoBtn = document.querySelector('.voltar-topo');
+            const footer = document.querySelector('footer');
+            
+            if (voltarTopoBtn && footer) {
+                // Esconder botão ao clicar
+                voltarTopoBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    this.classList.add('hidden');
+                    
+                    // Scroll suave para o topo
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+
+                // Mostrar/esconder botão baseado na posição do scroll
+                function toggleVoltarTopo() {
+                    const footerTop = footer.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    // Mostrar quando próximo ao footer (dentro de 200px do footer)
+                    if (footerTop <= windowHeight + 200) {
+                        voltarTopoBtn.classList.remove('hidden');
+                    } else {
+                        voltarTopoBtn.classList.add('hidden');
+                    }
+                }
+
+                // Verificar na carga inicial
+                toggleVoltarTopo();
+
+                // Verificar durante o scroll
+                window.addEventListener('scroll', toggleVoltarTopo);
+            }
+        });
+    </script>
+</body>
+</html>
+
