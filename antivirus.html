@@ -364,29 +364,81 @@
             }
 
 
+            .logo {
+                font-size: 1.1rem;
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+                margin-bottom: 1.5rem;
+            }
+
             .hero h1 {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
+                line-height: 1.3;
+                margin-bottom: 0.8rem;
             }
 
             .hero p {
-                font-size: 0.9rem;
+                font-size: 0.95rem;
+                line-height: 1.5;
             }
 
             h2.section-title {
                 font-size: 1.5rem;
+                margin: 1.5rem 0 1rem 0;
             }
 
             main {
                 padding: 15px 3%;
             }
 
+            section[id] {
+                scroll-margin-top: 80px;
+                margin-bottom: 2rem;
+            }
+
             .tabela-executiva-container {
                 padding: 1rem;
+                margin-bottom: 1.5rem;
             }
 
             .card {
                 min-width: 100%;
                 max-width: 100%;
+                padding: 1.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .card h3 {
+                font-size: 1.3rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .card p {
+                line-height: 1.6;
+            }
+
+            .pros-list li,
+            .contras-list li {
+                font-size: 0.9rem;
+                line-height: 1.6;
+                margin-bottom: 10px;
+            }
+
+            .list-title {
+                font-size: 1rem;
+                margin-top: 1.2rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .comparativo-detalhado {
+                gap: 15px;
+            }
+
+            .cta-button {
+                padding: 10px 20px;
+                font-size: 0.9rem;
             }
 
             .vereditos p {
@@ -455,12 +507,6 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>Bitdefender GravityZone</strong></td>
-                            <td>Performance, Integração e Custo-Benefício</td>
-                            <td>PMEs e Corporações que priorizam leveza e preço.</td>
-                            <td>Mais Acessível (Referência 1)</td>
-                        </tr>
-                        <tr>
                             <td><strong>Kaspersky Endpoint Security</strong></td>
                             <td>Facilidade de Uso e Resposta a Incidentes</td>
                             <td>PMEs com equipe de TI limitada e que buscam automação.</td>
@@ -472,6 +518,12 @@
                             <td>Empresas que buscam uma solução tudo-em-um e escalável.</td>
                             <td>Intermediário/Alto</td>
                         </tr>
+                        <tr>
+                            <td><strong>Bitdefender GravityZone</strong></td>
+                            <td>Performance, Integração e Custo-Benefício</td>
+                            <td>PMEs e Corporações que priorizam leveza e preço.</td>
+                            <td>Intermediário/Alto</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -481,24 +533,6 @@
             <h2 class="section-title">O Confronto de Recursos: Prós e Contras</h2>
 
             <div class="comparativo-detalhado">
-                <div class="card">
-                    <h3>Bitdefender GravityZone</h3>
-                    <p>Custo: Geralmente o mais competitivo.</p>
-
-                    <p class="list-title">✅ Prós:</p>
-                    <ul class="pros-list">
-                        <li><span class="list-icon">🟢</span> <strong>Mais Leve</strong> (melhor performance no sistema).</li>
-                        <li><span class="list-icon">🟢</span> Ótimo Custo-Benefício.</li>
-                        <li><span class="list-icon">🟢</span> Excelentes APIs para integração avançada.</li>
-                    </ul>
-
-                    <p class="list-title">❌ Contras:</p>
-                    <ul class="contras-list">
-                        <li><span class="list-icon">🔴</span> Rollback de ameaças pode exigir intervenção manual.</li>
-                        <li><span class="list-icon">🔴</span> Suporte técnico menos consistente (segundo relatos).</li>
-                    </ul>
-                </div>
-
                 <div class="card">
                     <h3>Kaspersky Endpoint Security</h3>
                     <p>Custo: Preço sólido, mas tende a ser superior ao BD.</p>
@@ -534,14 +568,30 @@
                         <li><span class="list-icon">🔴</span> Consumo de recursos moderado.</li>
                     </ul>
                 </div>
+
+                <div class="card">
+                    <h3>Bitdefender GravityZone</h3>
+                    <p>Custo: Geralmente o mais competitivo.</p>
+
+                    <p class="list-title">✅ Prós:</p>
+                    <ul class="pros-list">
+                        <li><span class="list-icon">🟢</span> Ótimo Custo-Benefício.</li>
+                        <li><span class="list-icon">🟢</span> Excelentes APIs para integração avançada.</li>
+                    </ul>
+
+                    <p class="list-title">❌ Contras:</p>
+                    <ul class="contras-list">
+                        <li><span class="list-icon">🔴</span> Rollback de ameaças pode exigir intervenção manual.</li>
+                        <li><span class="list-icon">🔴</span> Suporte técnico menos consistente (segundo relatos).</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
         <section id="vereditofinal">
-            <h2 class="section-title">Decisão Executiva: Escolha o Seu Vencedor</h2>
+            <h2 class="section-title">Melhor Escolha:</h2>
             <div class="vereditos">
-                <p>Se você busca o melhor <strong>Preço/Performance</strong> e precisa de um antivírus mais leve e integrável:<br><strong>Escolha Bitdefender.</strong></p>
-                <p>Se você busca a melhor <strong>Automação de Defesa</strong> contra ransomware e facilidade de uso:<br><strong>Escolha Kaspersky.</strong></p>
+                <p>A melhor <strong>Automação de Defesa</strong> contra ransomware e facilidade de uso:<br><br><strong>Escolha Kaspersky.</strong></p>
             </div>
         </section>
         <a href="#topo" class="cta-button voltar-topo">Voltar ao topo</a>
