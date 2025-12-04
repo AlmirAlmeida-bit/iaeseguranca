@@ -3,55 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal AI Enterprise: Escolha o Agregador Ideal</title>
+    <title>Análise Executiva de Agregadores de IA Corporativos</title>
     <link rel="icon" type="image/png" href="img/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    
+
     <style>
-        /* Variáveis de Cores */
         :root {
             --color-primary: #003366; /* Azul Marinho (Escuro) */
             --color-accent: #00bcd4;  /* Ciano (Destaque) */
             --color-text: #333333;
-            --color-background: #f4f7f6; /* Fundo Leve */
+            --color-background: #f4f7f6;
             --color-light: #ffffff;
             --color-success: #28a745;
             --color-danger: #dc3545;
+            --color-border: #dee2e6;
         }
 
-        /* Scroll Suave */
         html {
             scroll-behavior: smooth;
         }
 
-        /* Estilo Básico e Leveza */
         body {
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
+            font-family: 'Roboto', Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: var(--color-background);
             color: var(--color-text);
         }
 
-        /* Tipografia */
-        h1, h2, h3 {
-            color: var(--color-primary);
-            font-weight: 700;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        h2.section-title {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: var(--color-accent);
-        }
-
-        /* Header e Navegação (Menu) */
         header {
             background-color: var(--color-primary);
             color: var(--color-light);
@@ -66,7 +45,7 @@
         }
 
         .logo {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             font-weight: 700;
         }
 
@@ -75,6 +54,7 @@
             display: flex;
             padding: 0;
             margin: 0;
+            gap: 10px;
         }
 
         nav ul li a {
@@ -89,199 +69,165 @@
             background-color: rgba(255, 255, 255, 0.1);
         }
 
-        /* Seções Principais */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: #000000;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+            display: block;
+            box-sizing: border-box;
+            flex-shrink: 0;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        .menu-overlay {
+            display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            min-height: 100vh;
+            height: 100vh;
+            max-height: 100vh;
+            background: linear-gradient(135deg, #001a33 0%, #003366 100%);
+            z-index: 1000;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transform: translateY(-100%);
+            transition: transform 0.4s ease;
+            overflow-y: auto;
+        }
+
+        .menu-overlay.active {
+            transform: translateY(0);
+        }
+
+        .menu-overlay ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .menu-overlay ul li {
+            width: 100%;
+            text-align: center;
+        }
+
+        .menu-overlay ul li a {
+            display: block;
+            color: var(--color-accent);
+            text-decoration: none;
+            padding: 25px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            border-bottom: 2px solid rgba(0, 188, 212, 0.3);
+            transition: all 0.3s;
+            text-shadow: 0 0 10px rgba(0, 188, 212, 0.5);
+            letter-spacing: 1px;
+        }
+
+        .menu-overlay ul li a:hover {
+            background-color: rgba(0, 188, 212, 0.15);
+            color: #00e5ff;
+            text-shadow: 0 0 20px rgba(0, 188, 212, 0.8);
+            transform: translateX(10px);
+            border-left: 4px solid var(--color-accent);
+        }
+
         main {
             padding: 20px 5%;
         }
 
-        /* Ajuste para scroll considerando header sticky */
-        section[id],
-        div[id] {
+        section[id] {
             scroll-margin-top: 100px;
         }
 
         .hero {
             text-align: center;
-            padding: 4rem 0;
+            padding: 3rem 1rem;
             background: var(--color-light);
             margin-bottom: 2rem;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
 
-        .content-section {
-            padding: 2rem 0;
+        .hero h1 {
+            margin: 0 0 0.5rem 0;
+            font-size: 2.2rem;
         }
 
-        /* Estilo dos Cards Agregadores */
-        .aggregator-card {
-            background: var(--color-light);
-            padding: 2rem;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-            border-left: 5px solid; /* Linha de destaque na lateral */
-            transition: transform 0.3s ease;
-        }
-
-        .aggregator-card:hover {
-            transform: translateY(-5px);
-        }
-
-        /* Destaque por card */
-        .aggregator-card.primary { border-left-color: var(--color-accent); }
-        .aggregator-card.secondary { border-left-color: #f39c12; /* Amarelo/Laranja */ }
-        .aggregator-card.tertiary { border-left-color: #3498db; /* Azul Claro */ }
-
-        .card-title {
-            margin-top: 0;
-            font-size: 1.8rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .subtitle {
-            font-weight: 400;
-            font-size: 0.9rem;
-            color: #666;
-            margin-left: 10px;
-        }
-
-        /* Métricas (Valor, Prós, Contras) */
-        .metrics {
-            display: flex;
-            gap: 20px;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .metric-box {
-            flex: 1;
-            min-width: 250px;
-            padding: 15px;
-            border-radius: 6px;
-            background-color: #f9f9f9;
-            border: 1px solid #eee;
-        }
-
-        .metric-box h4 {
-            margin-top: 0;
+        .hero p {
             font-size: 1.1rem;
+            margin: 0.5rem 0 1rem 0;
         }
 
-        .metric-box.pros {
-            background-color: #e6ffe6; /* Fundo levemente verde para Prós */
-            border: 1px solid var(--color-success);
-        }
-
-        .metric-box.cons {
-            background-color: #ffe6e6; /* Fundo levemente vermelho para Contras */
-            border: 1px solid var(--color-danger);
-        }
-
-        .highlight {
-            font-weight: 700;
-            color: var(--color-accent);
-            font-size: 1.2rem;
-        }
-
-        .metric-box ul {
-            list-style: disc;
-            padding-left: 20px;
-            margin: 0;
-        }
-
-        /* Recomendações */
-        .recommendation {
-            background: var(--color-light);
-            padding: 2rem;
-            border-radius: 8px;
-            margin-top: 2rem;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-        }
-
-        .recommendation h3 {
-            color: var(--color-primary);
-            font-size: 1.4rem;
-            margin-top: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .recommendation p {
-            margin: 1rem 0;
-            line-height: 1.8;
-        }
-
-        /* Call to Action */
-        .call-to-action {
-            text-align: center;
-            background-color: var(--color-primary);
-            color: var(--color-light);
-            padding: 3rem 0;
-            margin-top: 3rem;
-            border-radius: 8px;
-        }
-
-        .btn-cta {
-            background-color: var(--color-accent);
-            color: var(--color-primary);
-            text-decoration: none;
-            font-weight: 700;
-            padding: 15px 30px;
-            border-radius: 50px;
-            transition: background-color 0.3s, transform 0.3s;
+        .cta-button {
             display: inline-block;
-            margin-top: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            background-color: var(--color-success);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background-color 0.3s, transform 0.3s;
         }
 
-        .btn-cta:hover {
-            background-color: #00e5ff; /* Ciano mais claro */
+        .cta-button:hover {
+            background-color: #1e7e34;
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        /* Estilos da Tabela */
-        /* Estilos para Criação de Agentes */
-        .criacao-agentes-container {
-            background: var(--color-light);
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-            margin-bottom: 2rem;
+        .cta-button.voltar-topo {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            margin: 0;
+            opacity: 1;
+            transition: opacity 0.3s ease;
         }
 
-        .criacao-agentes-container h2 {
-            margin-bottom: 1.5rem;
+        .cta-button.voltar-topo.hidden {
+            opacity: 0;
+            pointer-events: none;
         }
 
-        .agente-recommendation {
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            background-color: #f9f9f9;
-            border-radius: 6px;
-            border-left: 4px solid var(--color-accent);
-        }
-
-        .agente-recommendation h3 {
-            margin-top: 0;
-            color: var(--color-primary);
-            font-size: 1.3rem;
-        }
-
-        .agente-recommendation h4 {
+        h2.section-title {
             color: var(--color-accent);
-            margin-top: 1rem;
-            margin-bottom: 0.5rem;
+            text-align: center;
+            margin: 2rem 0 1.5rem 0;
+            font-size: 2rem;
         }
 
-        .agente-recommendation ul {
-            margin: 0.5rem 0;
-            padding-left: 20px;
-        }
-
-        .overview-table-container {
+        .tabela-executiva-container {
             background: var(--color-light);
             padding: 2rem;
             border-radius: 8px;
@@ -290,277 +236,323 @@
             overflow-x: auto;
         }
 
-        .overview-table {
+        .tabela-executiva {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 1rem;
         }
 
-        .overview-table thead {
-            background-color: var(--color-primary);
-            color: var(--color-light);
-        }
-
-        .overview-table th {
-            padding: 1rem;
+        .tabela-executiva th,
+        .tabela-executiva td {
+            padding: 15px;
             text-align: left;
-            font-weight: 700;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid var(--color-border);
         }
 
-        .overview-table td {
-            padding: 1rem;
-            border: 1px solid #eee;
-            vertical-align: top;
+        .tabela-executiva th {
+            background-color: #e9ecef;
+            color: var(--color-text);
+            font-weight: bold;
         }
 
-        .overview-table tbody tr:nth-child(even) {
-            background-color: #f9f9f9;
+        .tabela-executiva tr:hover {
+            background-color: #f1f1f1;
         }
 
-        .overview-table tbody tr:hover {
-            background-color: #f0f8ff;
-            transition: background-color 0.3s ease;
+        .comparativo-detalhado {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
         }
 
-        /* Footer */
-        footer {
+        .card {
+            background-color: var(--color-light);
+            border-radius: 8px;
+            padding: 25px;
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--color-accent);
+        }
+
+        .card h3 {
+            color: var(--color-primary);
+            border-bottom: 2px solid var(--color-primary);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .pros-list li {
+            color: var(--color-success);
+            list-style: none;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .contras-list li {
+            color: var(--color-danger);
+            list-style: none;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .list-title {
+            font-weight: bold;
+            color: var(--color-text);
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+
+        .list-icon {
+            margin-right: 8px;
+        }
+
+        .vereditos {
+            display: flex;
+            justify-content: center;
             text-align: center;
-            padding: 1rem;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .vereditos p {
+            background-color: var(--color-light);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 380px;
+        }
+
+        .vereditos strong {
+            color: var(--color-primary);
+            font-size: 1.1em;
+        }
+
+        footer {
             background-color: #cccccc;
             color: var(--color-text);
+            text-align: center;
+            padding: 20px;
             font-size: 0.9rem;
             margin-top: 2rem;
         }
 
-        /* Responsividade Básica */
+        footer a {
+            color: #555555;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
         @media (max-width: 768px) {
             header {
-                flex-direction: column;
-                text-align: center;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
             }
 
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-                width: 100%;
-                gap: 4px;
-            }
-
-            nav ul li {
-                flex: 0 0 23%;
+            .menu-toggle {
                 display: flex;
-                justify-content: center;
             }
 
-            nav ul li a {
-                font-size: 0.75rem;
-                padding: 0.35rem 0.25rem;
-                white-space: nowrap;
-            }
-            
-            .metrics {
-                flex-direction: column;
-            }
-            
-            .metric-box {
-                min-width: 100%;
+            nav {
+                display: none;
             }
 
-            .overview-table-container {
-                overflow-x: scroll;
+
+            .hero h1 {
+                font-size: 1.5rem;
             }
 
-            .overview-table {
+            .hero p {
                 font-size: 0.9rem;
             }
 
-            .overview-table th,
-            .overview-table td {
-                padding: 0.75rem;
+            h2.section-title {
+                font-size: 1.5rem;
+            }
+
+            main {
+                padding: 15px 3%;
+            }
+
+            .tabela-executiva-container {
+                padding: 1rem;
+            }
+
+            .card {
+                min-width: 100%;
+                max-width: 100%;
+            }
+
+            .vereditos p {
+                max-width: 100%;
+                padding: 15px;
+            }
+
+            .cta-button.voltar-topo {
+                bottom: 80px;
+                left: 50%;
+                transform: translateX(-50%);
+                right: auto;
+                padding: 8px 16px;
+                font-size: 0.75rem;
+                border-radius: 20px;
             }
         }
     </style>
 </head>
 <body>
-
     <header>
-        <div class="logo">Analise sobre serviços de IA e Segurança</div>
+        <div class="logo">Análise de Agregadores de IA</div>
+        <button class="menu-toggle" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
         <nav>
             <ul>
                 <li><a href="#inicio">Início</a></li>
-                <li><a href="#tessai">Tess AI</a></li>
-                <li><a href="#vertexai">Vertex AI</a></li>
-                <li><a href="#azureai">Azure AI</a></li>
-                <li><a href="#criacao-agentes">Criação de Agentes</a></li>
-                <li><a href="#overview">Overview</a></li>
+                <li><a href="#overview">Resumo</a></li>
+                <li><a href="#detalhes">Prós & Contras</a></li>
+                <li><a href="#vereditofinal">Veredito</a></li>
                 <li><a href="antivirus.html" target="_blank" rel="noopener noreferrer">Antivírus</a></li>
+                <li><a href="conexao-remota.html" target="_blank" rel="noopener noreferrer">Conexão Remota</a></li>
             </ul>
         </nav>
+        <div class="menu-overlay">
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#overview">Resumo</a></li>
+                <li><a href="#detalhes">Prós & Contras</a></li>
+                <li><a href="#vereditofinal">Veredito</a></li>
+                <li><a href="antivirus.html" target="_blank" rel="noopener noreferrer">Antivírus</a></li>
+                <li><a href="conexao-remota.html" target="_blank" rel="noopener noreferrer">Conexão Remota</a></li>
+            </ul>
+        </div>
     </header>
 
     <main>
-        <section id="inicio" class="hero">
-            <h1>🎯 Qual é o Melhor Agregador de IAs para Planos Empresariais?</h1>
-            <p>A escolha ideal equilibra segurança, governança e diversidade de modelos. Analisamos os líderes do mercado.</p>
+        <section class="hero" id="inicio">
+            <h1>🎯 Qual é o Melhor Agregador de IA para Planos Empresariais?</h1>
+            <p>Análise Executiva: Tess AI vs. Google Vertex AI vs. Microsoft Azure AI para Segurança e Governança.</p>
+            <a href="#vereditofinal" class="cta-button">Ir direto ao Veredito</a>
         </section>
 
-        <section id="analise" class="content-section">
-            <article id="tessai" class="aggregator-card primary">
-                <h3 class="card-title">1. 🥇 Tess AI <span class="subtitle">(Agregador Multi-Modelo Dedicado)</span></h3>
-                <p><strong>Foco Principal:</strong> Centralização Segura de diversos modelos de ponta (OpenAI, Google, Anthropic, etc.) sob uma única interface e gestão de faturamento.</p>
-                
-                <div class="metrics">
-                    <div class="metric-box">
-                        <h4>Valor</h4>
-                        <p class="highlight">Sob Consulta (Modelo Customizado)</p>
-                    </div>
-                    <div class="metric-box pros">
-                        <h4>Prós em Destaque</h4>
-                        <ul>
-                            <li>Segurança de Alto Nível (SOC II Type 1 e 2)</li>
-                            <li>Diversidade Imediata de Modelos (GPT-4o, Gemini, Claude 3/3.5)</li>
-                            <li>Agentes de IA Personalizados (RAG Memory)</li>
-                        </ul>
-                    </div>
-                    <div class="metric-box cons">
-                        <h4>Contras</h4>
-                        <ul>
-                            <li>Integração de Nuvem menos nativa</li>
-                            <li>Gestão de Créditos inicial complexa</li>
-                        </ul>
-                    </div>
-                </div>
-            </article>
+        <section id="overview">
+            <h2 class="section-title">Resumo Executivo: Os Três Líderes do Mercado</h2>
+            <p style="text-align: center;">Uma visão rápida sobre o foco, o custo e a melhor aplicação de cada solução para auxiliar na sua decisão estratégica.</p>
 
-            <article id="azureai" class="aggregator-card tertiary">
-                <h3 class="card-title">2. 🥉 Microsoft Azure AI <span class="subtitle">(Serviços OpenAI Seguros)</span></h3>
-                <p><strong>Foco Principal:</strong> Integração Profunda com Microsoft 365 e uso dos modelos OpenAI (GPT-4o) com garantia de segurança e compliance Azure.</p>
-                
-                <div class="metrics">
-                    <div class="metric-box">
-                        <h4>Valor</h4>
-                        <p class="highlight">Pay-as-you-go (Consumo por Token)</p>
-                    </div>
-                    <div class="metric-box pros">
-                        <h4>Prós em Destaque</h4>
-                        <ul>
-                            <li>Acesso Premium à OpenAI com SLA Azure</li>
-                            <li>Integração Inigualável com o Ecossistema Microsoft</li>
-                            <li>Compliance Robusto (Essencial para Grandes Corporações)</li>
-                        </ul>
-                    </div>
-                    <div class="metric-box cons">
-                        <h4>Contras</h4>
-                        <ul>
-                            <li>Foco limitado em modelos que não são da OpenAI</li>
-                            <li>Requisito de Nuvem Azure</li>
-                        </ul>
-                    </div>
-                </div>
-            </article>
-
-            <article id="vertexai" class="aggregator-card secondary">
-                <h3 class="card-title">3. 🥈 Google Vertex AI <span class="subtitle">(Plataforma de IA/ML do Google Cloud)</span></h3>
-                <p><strong>Foco Principal:</strong> Customização Profunda, Treinamento de Modelos e Integração Nativa com o ecossistema Google Cloud.</p>
-
-                <div class="metrics">
-                    <div class="metric-box">
-                        <h4>Valor</h4>
-                        <p class="highlight">Pay-as-you-go (Consumo por Token)</p>
-                    </div>
-                    <div class="metric-box pros">
-                        <h4>Prós em Destaque</h4>
-                        <ul>
-                            <li>Gemini de Ponta (Acesso seguro)</li>
-                            <li>Fundamentação (Grounding) Superior com BigQuery</li>
-                            <li>Controle Total para Fine-Tuning</li>
-                        </ul>
-                    </div>
-                    <div class="metric-box cons">
-                        <h4>Contras</h4>
-                        <ul>
-                            <li>Curva de aprendizado íngreme (Requer ML Ops)</li>
-                            <li>Custos variáveis e de infraestrutura</li>
-                        </ul>
-                    </div>
-                </div>
-            </article>
-
-            <div id="criacao-agentes" class="criacao-agentes-container">
-                <h2 class="section-title">🤖 Criação de Agentes</h2>
-                
-                <div class="agente-recommendation">
-                    <h3>1. Tess AI - Para Agentes de Conhecimento e Automação Simples (Rapidez)</h3>
-                    <p><strong>Por que:</strong> A plataforma é projetada para permitir que as equipes criem agentes de IA (muitas vezes chamados de Assistentes ou Bots) de forma rápida, sem escrever código complexo. Você pode facilmente carregar documentos (RAG Memory) e definir o comportamento do agente, o que é ideal para:</p>
-                    <ul>
-                        <li>Agentes de suporte interno (responder a FAQs).</li>
-                        <li>Agentes para otimizar fluxos de trabalho internos de texto.</li>
-                    </ul>
-                </div>
-
-                <div class="agente-recommendation">
-                    <h3>2. Microsoft Azure AI - Atua junto aos serviços da Microsoft</h3>
-                    <p><strong>Por que:</strong> O Azure oferece acesso seguro ao OpenAI Assistants API. Essa API foi projetada especificamente para a criação de agentes persistentes (que mantêm um histórico de conversação), têm a capacidade de usar ferramentas (como Code Interpreter e Retrieval), e podem ser instruídos sobre como se comportar.</p>
-                    <ul>
-                        <li>Precisam acessar, resumir ou criar conteúdo com base em documentos armazenados no SharePoint ou OneDrive.</li>
-                        <li>Serão incorporados em aplicativos do Teams ou Power Platform (Power Automate, Power Apps).</li>
-                        <li>Exigem a segurança e a governança de nível Azure para o uso dos modelos da OpenAI.</li>
-                    </ul>
-                </div>
-
-                <div class="agente-recommendation">
-                    <h3>3. Google Vertex AI - Agentes Complexos, Multimodais e de Missão Crítica (Controle e Poder)</h3>
-                    <p><strong>Por que:</strong> A Vertex AI oferece a infraestrutura e o controle necessários para o desenvolvimento de agentes em nível industrial.</p>
-                    <ul>
-                        <li><strong>Acesso Direto:</strong> Você usa as APIs do Gemini (modelos mais poderosos) para orquestrar o agente.</li>
-                        <li><strong>Integração de Dados:</strong> Facilidade em integrar o agente a vastos data lakes (BigQuery) e serviços de nuvem do Google.</li>
-                        <li><strong>Total Controle:</strong> A equipe de TI tem controle total sobre o código de orquestração do agente (funções, tools, estados) e sobre o ambiente de deploy (escalabilidade e segurança).</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div id="overview" class="overview-table-container">
-                <h2 class="section-title">📊 Visão Geral dos Agregadores</h2>
-                <table class="overview-table">
+            <div class="tabela-executiva-container">
+                <table class="tabela-executiva">
                     <thead>
                         <tr>
-                            <th>Agregador / Plataforma</th>
-                            <th>Foco Criação de Agentes</th>
-                            <th>Nível de Customização/Controle</th>
-                            <th>Vantagem Principal para Agentes</th>
+                            <th>Plataforma</th>
+                            <th>Foco Principal</th>
+                            <th>Melhor para</th>
+                            <th>Custo (Comparativo)</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><strong>Tess AI</strong></td>
-                            <td>Agentes Customizáveis (RAG Memory/Knowledge Base).</td>
-                            <td>Médio-Alto (Focado no uso de RAG e ferramentas prontas da plataforma).</td>
-                            <td>Rapidez e Facilidade: Permite que usuários não-DevOps criem e treinem agentes rapidamente com dados internos.</td>
+                            <td>Centralização Segura Multi-Modelo e Agentes Rápidos</td>
+                            <td>PMEs que buscam diversidade de modelos e criação rápida de agentes.</td>
+                            <td>Sob Consulta (Modelo Customizado)</td>
                         </tr>
                         <tr>
                             <td><strong>Google Vertex AI</strong></td>
-                            <td>Desenvolvimento Profundo de Agentes (Gemini API, RAG e Ferramentas).</td>
-                            <td>Muito Alto (Acesso total à infraestrutura e APIs do Google).</td>
-                            <td>Poder e Escala: Ideal para construir agentes complexos, multimodais e altamente escaláveis, integrados a Big Data.</td>
+                            <td>Customização Profunda e Integração com Big Data</td>
+                            <td>Empresas que precisam de controle total e integração com Google Cloud.</td>
+                            <td>Pay-as-you-go (Consumo por Token)</td>
                         </tr>
                         <tr>
                             <td><strong>Microsoft Azure AI</strong></td>
-                            <td>Agentes Baseados em OpenAI (Assistants API) e Integração M365.</td>
-                            <td>Alto (Focado em ferramentas e APIs da OpenAI, como o Assistants API).</td>
-                            <td>Melhor Ecossistema: Excelente para agentes que precisam interagir com SharePoint, Teams e documentos do Office.</td>
+                            <td>Integração com Microsoft 365 e OpenAI Seguro</td>
+                            <td>Corporações Microsoft que buscam compliance e integração nativa.</td>
+                            <td>Pay-as-you-go (Consumo por Token)</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+        </section>
 
-            <div class="recommendation">
-                <h2 class="section-title">📈 Recomendações Estratégicas</h2>
-                <h3>Ajuste Final na Escolha para a Equipe de TI</h3>
-                <p>Se a equipe de TI busca prototipar e implantar agentes internos de conhecimento de forma rápida e segura, sem mergulhar na complexidade do ML Ops de nuvem:</p>
-                <p><strong>Recomendação: Tess AI</strong> (Foco em time-to-market rápido para agentes internos).</p>
+        <section id="detalhes">
+            <h2 class="section-title">O Confronto de Recursos: Prós e Contras</h2>
+
+            <div class="comparativo-detalhado">
+                <div class="card">
+                    <h3>Tess AI</h3>
+                    <p>Custo: Modelo customizado sob consulta.</p>
+
+                    <p class="list-title">✅ Prós:</p>
+                    <ul class="pros-list">
+                        <li><span class="list-icon">🟢</span> <strong>Segurança de Alto Nível</strong> (SOC II Type 1 e 2).</li>
+                        <li><span class="list-icon">🟢</span> Diversidade Imediata de Modelos (GPT-4o, Gemini, Claude 3/3.5).</li>
+                        <li><span class="list-icon">🟢</span> Agentes de IA Personalizados (RAG Memory).</li>
+                        <li><span class="list-icon">🟢</span> <strong>Criação Rápida de Agentes</strong> sem código complexo (ideal para suporte interno e automação).</li>
+                    </ul>
+
+                    <p class="list-title">❌ Contras:</p>
+                    <ul class="contras-list">
+                        <li><span class="list-icon">🔴</span> Integração de Nuvem menos nativa.</li>
+                        <li><span class="list-icon">🔴</span> Gestão de Créditos inicial complexa.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Google Vertex AI</h3>
+                    <p>Custo: Pay-as-you-go (Consumo por Token).</p>
+
+                    <p class="list-title">✅ Prós:</p>
+                    <ul class="pros-list">
+                        <li><span class="list-icon">🟢</span> <strong>Gemini de Ponta</strong> (Acesso seguro).</li>
+                        <li><span class="list-icon">🟢</span> Fundamentação (Grounding) Superior com BigQuery.</li>
+                        <li><span class="list-icon">🟢</span> Controle Total para Fine-Tuning.</li>
+                        <li><span class="list-icon">🟢</span> <strong>Agentes Complexos e de Missão Crítica</strong> (controle total, multimodais e altamente escaláveis).</li>
+                    </ul>
+
+                    <p class="list-title">❌ Contras:</p>
+                    <ul class="contras-list">
+                        <li><span class="list-icon">🔴</span> Curva de aprendizado íngreme (Requer ML Ops).</li>
+                        <li><span class="list-icon">🔴</span> Custos variáveis e de infraestrutura.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Microsoft Azure AI</h3>
+                    <p>Custo: Pay-as-you-go (Consumo por Token).</p>
+
+                    <p class="list-title">✅ Prós:</p>
+                    <ul class="pros-list">
+                        <li><span class="list-icon">🟢</span> <strong>Acesso Premium à OpenAI</strong> com SLA Azure.</li>
+                        <li><span class="list-icon">🟢</span> Integração Inigualável com o Ecossistema Microsoft.</li>
+                        <li><span class="list-icon">🟢</span> Compliance Robusto (Essencial para Grandes Corporações).</li>
+                        <li><span class="list-icon">🟢</span> <strong>Agentes com Integração M365</strong> (SharePoint, Teams, Office via Assistants API).</li>
+                    </ul>
+
+                    <p class="list-title">❌ Contras:</p>
+                    <ul class="contras-list">
+                        <li><span class="list-icon">🔴</span> Foco limitado em modelos que não são da OpenAI.</li>
+                        <li><span class="list-icon">🔴</span> Requisito de Nuvem Azure.</li>
+                    </ul>
+                </div>
             </div>
         </section>
+
+        <section id="vereditofinal">
+            <h2 class="section-title">Decisão Executiva: Escolha o Seu Vencedor</h2>
+            <div class="vereditos">
+                <p>Se você busca <strong>Diversidade de Modelos</strong> e criação rápida de agentes internos sem complexidade de ML Ops:<br><strong>Escolha Tess AI.</strong></p>
+                <p>Se você busca <strong>Integração com Microsoft 365</strong> e compliance robusto:<br><strong>Escolha Azure AI.</strong></p>
+                <p>Se você busca <strong>Controle Total e Poder</strong> para agentes complexos e integração com Big Data:<br><strong>Escolha Vertex AI.</strong></p>
+            </div>
+        </section>
+        <a href="#inicio" class="cta-button voltar-topo">Voltar ao topo</a>
     </main>
 
     <footer>
@@ -568,6 +560,39 @@
     </footer>
 
     <script>
+        // Menu Hambúrguer
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const menuOverlay = document.querySelector('.menu-overlay');
+            const menuLinks = menuOverlay.querySelectorAll('a');
+
+            if (menuToggle && menuOverlay) {
+                menuToggle.addEventListener('click', () => {
+                    menuToggle.classList.toggle('active');
+                    menuOverlay.classList.toggle('active');
+                    document.body.style.overflow = menuOverlay.classList.contains('active') ? 'hidden' : '';
+                });
+
+                // Fechar menu ao clicar em um link
+                menuLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        menuToggle.classList.remove('active');
+                        menuOverlay.classList.remove('active');
+                        document.body.style.overflow = '';
+                    });
+                });
+
+                // Fechar menu ao clicar fora (no overlay)
+                menuOverlay.addEventListener('click', (e) => {
+                    if (e.target === menuOverlay) {
+                        menuToggle.classList.remove('active');
+                        menuOverlay.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+        });
+
         // Efeito deslizante suave com ajuste para header sticky
         document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -576,7 +601,7 @@
                 const targetElement = document.querySelector(targetId);
                 
                 if (targetElement) {
-                    const headerOffset = 100; // Altura do header sticky
+                    const headerOffset = 100;
                     const elementPosition = targetElement.getBoundingClientRect().top;
                     const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -587,6 +612,43 @@
                 }
             });
         });
+
+        // Controle do botão "Voltar ao topo"
+        const voltarTopoBtn = document.querySelector('.voltar-topo');
+        const footer = document.querySelector('footer');
+        
+        if (voltarTopoBtn && footer) {
+            // Esconder botão ao clicar
+            voltarTopoBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                this.classList.add('hidden');
+                
+                // Scroll suave para o topo
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Mostrar/esconder botão baseado na posição do scroll
+            function toggleVoltarTopo() {
+                const footerTop = footer.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                // Mostrar quando próximo ao footer (dentro de 200px do footer)
+                if (footerTop <= windowHeight + 200) {
+                    voltarTopoBtn.classList.remove('hidden');
+                } else {
+                    voltarTopoBtn.classList.add('hidden');
+                }
+            }
+
+            // Verificar na carga inicial
+            toggleVoltarTopo();
+
+            // Verificar durante o scroll
+            window.addEventListener('scroll', toggleVoltarTopo);
+        }
     </script>
 
 </body>
